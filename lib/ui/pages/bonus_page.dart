@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel/ui/widget/custom_button.dart';
 import '../../shared/theme.dart';
 
 class BonusPage extends StatelessWidget {
@@ -24,6 +25,7 @@ class BonusPage extends StatelessWidget {
           ],
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -58,10 +60,69 @@ class BonusPage extends StatelessWidget {
                     ),
                   ),
                 ),
+                Text(
+                  'Pay',
+                  style: whiteTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: medium,
+                  ),
+                )
               ],
             ),
+            SizedBox(height: 36),
+            Text(
+              'Balance',
+              style: whiteTextStyle.copyWith(
+                fontWeight: ligth,
+              ),
+            ),
+            Text(
+              'IDR 280.000.000',
+              style: whiteTextStyle.copyWith(
+                fontSize: 26,
+                fontWeight: medium,
+              ),
+            )
           ],
         ),
+      );
+    }
+
+    Widget title() {
+      return Container(
+        margin: EdgeInsets.only(top: 80),
+        child: Text(
+          'Big Bonus 🎉',
+          style: blackTextStyle.copyWith(
+            fontSize: 32,
+            fontWeight: semiBold,
+          ),
+        ),
+      );
+    }
+
+    Widget subtitle() {
+      return Container(
+        margin: EdgeInsets.only(top: 10),
+        child: Text(
+          'We give you early credit so that\nyou can buy a flight ticket',
+          style: greyTextStyle.copyWith(
+            fontSize: 16,
+            fontWeight: ligth,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      );
+    }
+
+    Widget startButton() {
+      return CustomButton(
+        title: 'Start Fly Now',
+        width: 220,
+        margin: EdgeInsets.only(top: 50),
+        onPressed: () {
+          Navigator.pushNamed(context, '/main');
+        },
       );
     }
 
@@ -72,6 +133,9 @@ class BonusPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             bonusCard(),
+            title(),
+            subtitle(),
+            startButton(),
           ],
         ),
       ),
