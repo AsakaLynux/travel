@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel/ui/widget/destination_card.dart';
 import '../../shared/theme.dart';
 
 class HomePage extends StatelessWidget {
@@ -53,9 +54,53 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    Widget popularDestination() {
+      return Container(
+        margin: EdgeInsets.only(top: 30),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              DestinationCard(
+                name: 'Lake Ciliwung',
+                city: 'Tangerang',
+                imageUrl: 'assets/image_destination_1.png',
+                rating: 4.8,
+              ),
+              DestinationCard(
+                name: 'White Houses',
+                city: 'Spain',
+                imageUrl: 'assets/image_destination_2.png',
+                rating: 4.7,
+              ),
+              DestinationCard(
+                name: 'Hill Heyo',
+                city: 'Monaco',
+                imageUrl: 'assets/image_destination_3.png',
+                rating: 4.8,
+              ),
+              DestinationCard(
+                name: 'Menarra',
+                city: 'Japan',
+                imageUrl: 'assets/image_destination_4.png',
+                rating: 5.0,
+              ),
+              DestinationCard(
+                name: 'Payung Teduh',
+                city: 'Singapore',
+                imageUrl: 'assets/image_destination_5.png',
+                rating: 4.8,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     return ListView(
       children: [
         header(),
+        popularDestination(),
       ],
     );
   }
