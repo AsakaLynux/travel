@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../shared/theme.dart';
+import '../pages/detail_page.dart';
 
 class DestinationTile extends StatelessWidget {
   final String name;
@@ -16,71 +17,81 @@ class DestinationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 16),
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: kWhiteColor,
-        borderRadius: BorderRadius.circular(18),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 70,
-            height: 70,
-            margin: EdgeInsets.only(right: 16),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(18),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage('assets/' + imageUrl),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailPage(),
+          ),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.only(top: 16),
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: kWhiteColor,
+          borderRadius: BorderRadius.circular(18),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 70,
+              height: 70,
+              margin: EdgeInsets.only(right: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/' + imageUrl),
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: Column(
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: blackTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: medium,
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    city,
+                    style: greyTextStyle.copyWith(
+                      fontWeight: ligth,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  name,
-                  style: blackTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: medium,
+                Container(
+                  margin: EdgeInsets.only(right: 2),
+                  width: 20,
+                  height: 20,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/icon_star.png'),
+                    ),
                   ),
                 ),
-                SizedBox(height: 5),
                 Text(
-                  city,
-                  style: greyTextStyle.copyWith(
-                    fontWeight: ligth,
+                  rating.toString(),
+                  style: blackTextStyle.copyWith(
+                    fontWeight: medium,
                   ),
                 ),
               ],
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: EdgeInsets.only(right: 2),
-                width: 20,
-                height: 20,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/icon_star.png'),
-                  ),
-                ),
-              ),
-              Text(
-                rating.toString(),
-                style: blackTextStyle.copyWith(
-                  fontWeight: medium,
-                ),
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
