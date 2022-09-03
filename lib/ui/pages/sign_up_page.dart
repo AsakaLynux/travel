@@ -55,7 +55,8 @@ class SignUpPage extends StatelessWidget {
         return CustomButton(
           title: 'Get Started',
           onPressed: () {
-            Navigator.pushNamed(context, '/bonus');
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/bonus', (route) => false);
           },
         );
       }

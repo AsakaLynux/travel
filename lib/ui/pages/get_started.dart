@@ -47,7 +47,8 @@ class GetStartedPage extends StatelessWidget {
                     top: 50,
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/sign-up');
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/sign-up', (route) => false);
                   },
                 ),
               ],
