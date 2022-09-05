@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "357422144497",
+    "project_id": "airplane-3f045",
+    "storage_bucket": "airplane-3f045.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357422144497:android:664e47a83cd2d397038250",
+        "android_client_info": {
+          "package_name": "com.asakalynux.travel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "357422144497-m8k7papmvusra6llq1t319al0jc9p768.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYh3JJI1KlAF0szHxIBriP1c23MPPJ57Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "357422144497-m8k7papmvusra6llq1t319al0jc9p768.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
