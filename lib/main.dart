@@ -2,10 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel/cubit/auth_cubit.dart';
+import 'package:travel/cubit/destination_cubit.dart';
 import 'package:travel/cubit/page_cubit.dart';
 import 'package:travel/ui/pages/bonus_page.dart';
 import 'package:travel/ui/pages/get_started.dart';
 import 'package:travel/ui/pages/main_page.dart';
+import 'package:travel/ui/pages/sign_in_page.dart';
 import 'package:travel/ui/pages/sign_up_page.dart';
 import 'ui/pages/splash_page.dart';
 
@@ -29,6 +31,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AuthCubit(),
         ),
+        BlocProvider(
+          create: (context) => DestinationCubit(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -37,6 +42,7 @@ class MyApp extends StatelessWidget {
           '/get-started': (context) => GetStartedPage(),
           '/sign-up': (context) => SignUpPage(),
           '/bonus': (context) => BonusPage(),
+          '/sign-in': (context) => SignIpPage(),
           '/main': (context) => MainPage(),
         },
       ),

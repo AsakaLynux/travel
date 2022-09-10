@@ -3,7 +3,25 @@ import 'package:travel/models/user_model.dart';
 import 'package:travel/services/user_service.dart';
 
 class AuthService {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future<UserModel> signIn({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      UserModel user = await UserSevice().getUserById(userCredential.user!.uid);
+
+      return user;
+    } catch (e) {
+      throw e;
+    }
+  }
 
   Future<UserModel> signUp({
     required String email,
@@ -25,6 +43,14 @@ class AuthService {
       await UserSevice().setUser(user);
 
       return user;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
     } catch (e) {
       throw e;
     }
