@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
               margin: EdgeInsets.only(
                 left: defaultMargin,
                 right: defaultMargin,
-                top: 30,
+                top: 31,
               ),
               child: Row(
                 children: [
