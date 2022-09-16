@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel/cubit/transaction_cubit.dart';
 import 'package:travel/ui/widget/transaction_card.dart';
 
+import '../../shared/theme.dart';
+
 class TransactionPage extends StatefulWidget {
   const TransactionPage({Key? key}) : super(key: key);
 
@@ -29,16 +31,21 @@ class _TransactionPageState extends State<TransactionPage> {
               child: Text('Tidak ada transaksi'),
             );
           } else {
+            print('success');
             return ListView.builder(
-                itemCount: state.transactions.length,
-                itemBuilder: (context, index) {
-                  return TransactionCard(
-                    state.transactions[index],
-                  );
-                });
+              itemCount: state.transactions.length,
+              itemBuilder: (context, index) {
+                return TransactionCard(
+                  state.transactions[index],
+                );
+              },
+            );
           }
+        } else if (state is TransactionFailed) {
+          print('failed');
         }
 
+        print('lewat');
         return Center(
           child: Text('Transaction Page'),
         );

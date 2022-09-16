@@ -16,7 +16,10 @@ class TransactionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     {
       return Container(
-        margin: EdgeInsets.only(top: 30),
+        margin: EdgeInsets.symmetric(
+          vertical: 30,
+          horizontal: defaultMargin,
+        ),
         padding: EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 30,
@@ -103,7 +106,7 @@ class TransactionCard extends StatelessWidget {
             // Note: Details Items
             BookingDetailsItem(
               title: 'Traveler',
-              textValue: '${transaction.amoutOfTraveler} Person',
+              textValue: '${transaction.amountOfTraveler} Person',
               colorValue: kBlackColor,
             ),
             BookingDetailsItem(
