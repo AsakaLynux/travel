@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           'こんにちわ,\n${state.user.name}',
                           style: blackTextStyle.copyWith(
-                            fontSize: 24,
+                            fontSize: 20,
                             fontWeight: semiBold,
                           ),
                           overflow: TextOverflow.ellipsis,
