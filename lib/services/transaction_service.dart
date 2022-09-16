@@ -10,6 +10,7 @@ class TransactionService {
     try {
       _transactionReference.add({
         'destination': transaction.destination.toJson(),
+        'email': transaction.email,
         'amountOfTraveler': transaction.amountOfTraveler,
         'selectedSeat': transaction.selectedSeat,
         'insurance': transaction.insurance,

@@ -45,7 +45,6 @@ class _TransactionPageState extends State<TransactionPage> {
           print('failed');
         }
 
-        print('lewat');
         return Center(
           child: Text('Transaction Page'),
         );

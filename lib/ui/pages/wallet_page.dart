@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../cubit/auth_cubit.dart';
 import '../../shared/theme.dart';
@@ -82,7 +83,11 @@ class WalletPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'IDR 280.000.000',
+                    NumberFormat.currency(
+                      locale: 'id',
+                      symbol: 'IDR ',
+                      decimalDigits: 0,
+                    ).format(state.user.balance),
                     style: whiteTextStyle.copyWith(
                       fontSize: 26,
                       fontWeight: medium,

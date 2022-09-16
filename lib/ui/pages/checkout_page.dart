@@ -219,6 +219,7 @@ class CheckoutPage extends StatelessWidget {
       return BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           if (state is AuthSuccess) {
+            print(state.user.balance);
             return Container(
               margin: EdgeInsets.only(
                 top: 30,
@@ -299,7 +300,7 @@ class CheckoutPage extends StatelessWidget {
                                 style: greyTextStyle.copyWith(
                                   fontWeight: ligth,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),

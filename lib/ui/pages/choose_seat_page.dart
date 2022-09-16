@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:travel/cubit/auth_cubit.dart';
 import 'package:travel/cubit/seat_cubit.dart';
 import 'package:travel/models/destination_model.dart';
 import 'package:travel/models/transaction_model.dart';
@@ -408,34 +409,41 @@ class ChooseSeatPage extends StatelessWidget {
     Widget checkoutButton() {
       return BlocBuilder<SeatCubit, List<String>>(
         builder: (context, state) {
-          return CustomButton(
-            title: 'Continue to Checkout',
-            onPressed: () {
-              int price = destination.price * state.length;
-
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CheckoutPage(
-                    TransactionModel(
-                      destination: destination,
-                      amountOfTraveler: state.length,
-                      selectedSeat: state.join(', '),
-                      insurance: true,
-                      refundable: false,
-                      vat: 0.45,
-                      price: price,
-                      grandTotal: price + (price * 0.45).toInt(),
+          int price = destination.price * state.length;
+          int amountOfTraveler = state.length;
+          String selectedSeat = state.join(', ');
+          return BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
+            if (state is AuthSuccess) {
+              return CustomButton(
+                title: 'Continue to Checkout',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CheckoutPage(
+                        TransactionModel(
+                          email: state.user.email,
+                          destination: destination,
+                          amountOfTraveler: amountOfTraveler,
+                          selectedSeat: selectedSeat,
+                          insurance: true,
+                          refundable: false,
+                          vat: 0.45,
+                          price: price,
+                          grandTotal: price + (price * 0.45).toInt(),
+                        ),
+                      ),
                     ),
-                  ),
+                  );
+                },
+                margin: EdgeInsets.only(
+                  top: 30,
+                  bottom: 46,
                 ),
               );
-            },
-            margin: EdgeInsets.only(
-              top: 30,
-              bottom: 46,
-            ),
-          );
+            }
+            return SizedBox();
+          });
         },
       );
     }

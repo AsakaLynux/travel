@@ -64,6 +64,12 @@ class TransactionCard extends StatelessWidget {
                           fontWeight: ligth,
                         ),
                       ),
+                      Text(
+                        transaction.email,
+                        style: greyTextStyle.copyWith(
+                          fontWeight: ligth,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -124,20 +130,7 @@ class TransactionCard extends StatelessWidget {
               textValue: transaction.refundable ? 'YES' : 'NO',
               colorValue: transaction.refundable ? kGreenColor : kRedColor,
             ),
-            BookingDetailsItem(
-              title: 'VAT',
-              textValue: '${(transaction.vat * 100).toStringAsFixed(0)}%',
-              colorValue: kBlackColor,
-            ),
-            BookingDetailsItem(
-              title: 'Price',
-              textValue: NumberFormat.currency(
-                locale: 'id',
-                symbol: 'IDR ',
-                decimalDigits: 0,
-              ).format(transaction.price),
-              colorValue: kBlackColor,
-            ),
+
             BookingDetailsItem(
               title: 'Grand Total',
               textValue: NumberFormat.currency(
