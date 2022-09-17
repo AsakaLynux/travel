@@ -35,8 +35,10 @@ class _TransactionPageState extends State<TransactionPage> {
             return ListView.builder(
               itemCount: state.transactions.length,
               itemBuilder: (context, index) {
-                return TransactionCard(
-                  state.transactions[index],
+                return Container(
+                  child: TransactionCard(
+                    state.transactions[index],
+                  ),
                 );
               },
             );

@@ -66,7 +66,7 @@ class CheckoutPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Ciliwung',
+                      transaction.destination.city,
                       style: greyTextStyle.copyWith(
                         fontWeight: ligth,
                       ),

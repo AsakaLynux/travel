@@ -1,46 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:travel/shared/arguments.dart';
-import 'package:travel/ui/pages/detail_transaction_page.dart';
-import '../../models/transaction_model.dart';
+import '../../cubit/auth_cubit.dart';
 import '../../shared/theme.dart';
-import 'booking_details_item.dart';
+import '../widget/booking_details_item.dart';
 
-class TransactionCard extends StatelessWidget {
-  final TransactionModel transaction;
-
-  const TransactionCard(
-    this.transaction, {
-    Key? key,
-  }) : super(key: key);
+class DetailTransactionPage extends StatelessWidget {
+  const DetailTransactionPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    {
-      return GestureDetector(
-        onTap: () {
-          Navigator.pushNamed(context, '/detail-transaction',
-              arguments: DetailTransaction(
-                email: transaction.email,
-                amountOfTraveler: transaction.amountOfTraveler,
-                insurance: transaction.insurance,
-                refundable: transaction.refundable,
-                grandTotal: transaction.grandTotal,
-                price: transaction.price,
-                vat: transaction.vat,
-                selectedSeat: transaction.selectedSeat,
-                name: transaction.destination.name,
-                imageUrl: transaction.destination.imageUrl,
-                rating: transaction.destination.rating,
-                city: transaction.destination.city,
-              ));
-        },
+    var showDetailTransaction =
+        ModalRoute.of(context)!.settings.arguments as DetailTransaction;
+
+    Widget bookingDetails() {
+      return Center(
         child: Container(
           margin: EdgeInsets.only(
+            top: 30,
             left: defaultMargin,
             right: defaultMargin,
-            // bottom: 15,
-            top: 15,
           ),
           padding: EdgeInsets.symmetric(
             horizontal: 20,
@@ -64,7 +44,7 @@ class TransactionCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(18),
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(transaction.destination.imageUrl),
+                        image: NetworkImage(showDetailTransaction.imageUrl),
                       ),
                     ),
                   ),
@@ -73,7 +53,7 @@ class TransactionCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          transaction.destination.name,
+                          showDetailTransaction.name,
                           style: blackTextStyle.copyWith(
                             fontSize: 18,
                             fontWeight: medium,
@@ -81,13 +61,7 @@ class TransactionCard extends StatelessWidget {
                         ),
                         SizedBox(height: 5),
                         Text(
-                          transaction.destination.city,
-                          style: greyTextStyle.copyWith(
-                            fontWeight: ligth,
-                          ),
-                        ),
-                        Text(
-                          transaction.email,
+                          showDetailTransaction.city,
                           style: greyTextStyle.copyWith(
                             fontWeight: ligth,
                           ),
@@ -110,7 +84,7 @@ class TransactionCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        transaction.destination.rating.toString(),
+                        showDetailTransaction.rating.toString(),
                         style: blackTextStyle.copyWith(
                           fontWeight: medium,
                         ),
@@ -121,45 +95,61 @@ class TransactionCard extends StatelessWidget {
               ),
 
               // Note: Booking Details
-              // Container(
-              //   margin: EdgeInsets.only(top: 20),
-              //   child: Text(
-              //     'Booking Details',
-              //     style: blackTextStyle.copyWith(
-              //       fontSize: 16,
-              //       fontWeight: semiBold,
-              //     ),
-              //   ),
-              // ),
-              // // Note: Details Items
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                child: Text(
+                  'Booking Details',
+                  style: blackTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: semiBold,
+                  ),
+                ),
+              ),
+              // Note: Details Items
               BookingDetailsItem(
                 title: 'Traveler',
-                textValue: '${transaction.amountOfTraveler} Person',
+                textValue: '${showDetailTransaction.amountOfTraveler} Person',
                 colorValue: kBlackColor,
               ),
-              // BookingDetailsItem(
-              //   title: 'Seat',
-              //   textValue: transaction.selectedSeat,
-              //   colorValue: kBlackColor,
-              // ),
-              // BookingDetailsItem(
-              //   title: 'Insurance',
-              //   textValue: transaction.insurance ? 'YES' : 'NO',
-              //   colorValue: transaction.insurance ? kGreenColor : kRedColor,
-              // ),
-              // BookingDetailsItem(
-              //   title: 'Refundable',
-              //   textValue: transaction.refundable ? 'YES' : 'NO',
-              //   colorValue: transaction.refundable ? kGreenColor : kRedColor,
-              // ),
-
+              BookingDetailsItem(
+                title: 'Seat',
+                textValue: showDetailTransaction.selectedSeat,
+                colorValue: kBlackColor,
+              ),
+              BookingDetailsItem(
+                title: 'Insurance',
+                textValue: showDetailTransaction.insurance ? 'YES' : 'NO',
+                colorValue:
+                    showDetailTransaction.insurance ? kGreenColor : kRedColor,
+              ),
+              BookingDetailsItem(
+                title: 'Refundable',
+                textValue: showDetailTransaction.refundable ? 'YES' : 'NO',
+                colorValue:
+                    showDetailTransaction.refundable ? kGreenColor : kRedColor,
+              ),
+              BookingDetailsItem(
+                title: 'VAT',
+                textValue:
+                    '${(showDetailTransaction.vat * 100).toStringAsFixed(0)}%',
+                colorValue: kBlackColor,
+              ),
+              BookingDetailsItem(
+                title: 'Price',
+                textValue: NumberFormat.currency(
+                  locale: 'id',
+                  symbol: 'IDR ',
+                  decimalDigits: 0,
+                ).format(showDetailTransaction.price),
+                colorValue: kBlackColor,
+              ),
               BookingDetailsItem(
                 title: 'Grand Total',
                 textValue: NumberFormat.currency(
                   locale: 'id',
                   symbol: 'IDR ',
                   decimalDigits: 0,
-                ).format(transaction.grandTotal),
+                ).format(showDetailTransaction.grandTotal),
                 colorValue: kPrimaryColor,
               ),
             ],
@@ -167,5 +157,14 @@ class TransactionCard extends StatelessWidget {
         ),
       );
     }
+
+    return Scaffold(
+      backgroundColor: kbackgroundColor,
+      body: Column(
+        children: [
+          bookingDetails(),
+        ],
+      ),
+    );
   }
 }

@@ -9,6 +9,7 @@ import 'package:travel/ui/pages/checkout_page.dart';
 import 'package:travel/ui/widget/custom_button.dart';
 import 'package:travel/ui/widget/seat_item.dart';
 import '../../shared/theme.dart';
+import '../../shared/theme.dart';
 
 class ChooseSeatPage extends StatelessWidget {
   final DestinationModel destination;
@@ -187,7 +188,6 @@ class ChooseSeatPage extends StatelessWidget {
                     children: [
                       SeatItem(
                         id: 'A1',
-                        isAvailable: false,
                       ),
                       SeatItem(
                         id: 'B1',

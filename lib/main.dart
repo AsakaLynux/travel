@@ -7,6 +7,7 @@ import 'package:travel/cubit/page_cubit.dart';
 import 'package:travel/cubit/seat_cubit.dart';
 import 'package:travel/cubit/transaction_cubit.dart';
 import 'package:travel/ui/pages/bonus_page.dart';
+import 'package:travel/ui/pages/detail_transaction_page.dart';
 import 'package:travel/ui/pages/get_started.dart';
 import 'package:travel/ui/pages/main_page.dart';
 import 'package:travel/ui/pages/sign_in_page.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
           '/sign-in': (context) => SignIpPage(),
           '/main': (context) => MainPage(),
           '/success': (context) => SuccessCheckoutPage(),
+          '/detail-transaction': (context) => DetailTransactionPage(),
         },
       ),
     );

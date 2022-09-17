@@ -39,8 +39,8 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text( 
-                          'Howdy,\n${state.user.name}',
+                        Text(
+                          'こんにちわ,\n${state.user.name}',
                           style: blackTextStyle.copyWith(
                             fontSize: 24,
                             fontWeight: semiBold,
