@@ -19,21 +19,24 @@ class TransactionCard extends StatelessWidget {
     {
       return GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, '/detail-transaction',
-              arguments: DetailTransaction(
-                email: transaction.email,
-                amountOfTraveler: transaction.amountOfTraveler,
-                insurance: transaction.insurance,
-                refundable: transaction.refundable,
-                grandTotal: transaction.grandTotal,
-                price: transaction.price,
-                vat: transaction.vat,
-                selectedSeat: transaction.selectedSeat,
-                name: transaction.destination.name,
-                imageUrl: transaction.destination.imageUrl,
-                rating: transaction.destination.rating,
-                city: transaction.destination.city,
-              ));
+          Navigator.pushNamed(
+            context,
+            '/detail-transaction',
+            arguments: DetailTransaction(
+              email: transaction.email,
+              amountOfTraveler: transaction.amountOfTraveler,
+              insurance: transaction.insurance,
+              refundable: transaction.refundable,
+              grandTotal: transaction.grandTotal,
+              price: transaction.price,
+              vat: transaction.vat,
+              selectedSeat: transaction.selectedSeat,
+              name: transaction.destination.name,
+              imageUrl: transaction.destination.imageUrl,
+              rating: transaction.destination.rating,
+              city: transaction.destination.city,
+            ),
+          );
         },
         child: Container(
           margin: EdgeInsets.only(

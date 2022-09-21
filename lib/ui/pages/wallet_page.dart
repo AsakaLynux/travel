@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:travel/cubit/destination_cubit.dart';
 
 import '../../cubit/auth_cubit.dart';
 import '../../shared/theme.dart';
@@ -13,6 +14,7 @@ class WalletPage extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         if (state is AuthSuccess) {
+          int balance = state.user.balance;
           return Center(
             child: Container(
               padding: EdgeInsets.all(defaultMargin),
@@ -87,7 +89,7 @@ class WalletPage extends StatelessWidget {
                       locale: 'id',
                       symbol: 'IDR ',
                       decimalDigits: 0,
-                    ).format(state.user.balance),
+                    ).format(balance),
                     style: whiteTextStyle.copyWith(
                       fontSize: 26,
                       fontWeight: medium,

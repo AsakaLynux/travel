@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:travel/shared/arguments.dart';
+import 'package:travel/ui/widget/custom_button.dart';
 import '../../cubit/auth_cubit.dart';
 import '../../shared/theme.dart';
 import '../widget/booking_details_item.dart';
@@ -17,7 +18,7 @@ class DetailTransactionPage extends StatelessWidget {
     Widget bookingDetails() {
       return Container(
         margin: EdgeInsets.only(
-          top: 30,
+          // top: 30,
           left: defaultMargin,
           right: defaultMargin,
         ),
@@ -156,11 +157,34 @@ class DetailTransactionPage extends StatelessWidget {
       );
     }
 
+    Widget WalletButton() {
+      return CustomButton(
+        title: 'See my Wallet',
+        width: 255,
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, '/wallet',
+              arguments: DetailTransaction(
+                  grandTotal: showDetailTransaction.grandTotal));
+        },
+      );
+    }
+
     return Scaffold(
       backgroundColor: kbackgroundColor,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Text(
+            showDetailTransaction.email,
+            style: blackTextStyle.copyWith(
+              fontSize: 30,
+              fontWeight: bold,
+            ),
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(height: 10),
           bookingDetails(),
+          // WalletButton(),
         ],
       ),
     );

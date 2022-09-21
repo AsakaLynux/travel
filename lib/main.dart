@@ -13,6 +13,7 @@ import 'package:travel/ui/pages/main_page.dart';
 import 'package:travel/ui/pages/sign_in_page.dart';
 import 'package:travel/ui/pages/sign_up_page.dart';
 import 'package:travel/ui/pages/success_checkout_page.dart';
+import 'package:travel/ui/pages/wallet_page.dart';
 import 'ui/pages/splash_page.dart';
 
 void main() async {
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
           '/sign-in': (context) => SignIpPage(),
           '/main': (context) => MainPage(),
           '/success': (context) => SuccessCheckoutPage(),
+          '/wallet': (context) => WalletPage(),
           '/detail-transaction': (context) => DetailTransactionPage(),
         },
       ),
